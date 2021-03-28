@@ -10,6 +10,8 @@
 <div class="container">
     <h1>Todo Items</h1>
 
+    <a class="btn btn-primary" href="add.html" th:href="@{/todo/add}">Add new TODO</a>
+
     <ul class="list-group" th:each="todoItem : ${todoItems}">
         <li class="list-group-item" th:text="${todoItem.name}"></li>
     </ul>
