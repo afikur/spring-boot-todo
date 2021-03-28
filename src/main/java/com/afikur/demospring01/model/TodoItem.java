@@ -1,62 +1,27 @@
 package com.afikur.demospring01.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class TodoItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String description;
     private Date createdAt;
 
-    public TodoItem() {
-    }
-
-    public TodoItem(Integer id, String name, String description, Date createdAt) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.createdAt = createdAt;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public String toString() {
-        return "TodoItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+    @PrePersist
+    void createdAt() {
+        createdAt = new Date();
     }
 }
